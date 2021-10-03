@@ -1,0 +1,183 @@
+# Created by Octave 6.3.0, Sun Oct 03 16:40:47 2021 GMT <unknown@DESKTOP-32QBKNA>
+# name: iJf1
+# type: function handle
+@<anonymous>
+@(A, B, C2, l2) [cos(B) ./ (C2 .* cos(A + B)), -sin(B) ./ (C2 .* cos(A + B)); sin(A) ./ (l2 .* cos(A + B)), -cos(A) ./ (l2 .* cos(A + B))]
+
+
+# name: Ff1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, L1, L2, l1, l2) [C2 .* sin(A) - L1 + l1 .* cos(q) + l2 .* cos(B); -C2 .* cos(A) - L2 + l1 .* sin(q) - l2 .* sin(B)]
+
+
+# name: Kf1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, l1, l2) [l1 .* sin(B + q) ./ (C2 .* cos(A + B)); l1 .* cos(A - q) ./ (l2 .* cos(A + B))]
+
+
+# name: Lf1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, l1, l2) [l1 .* (C2 .* (l1 .* cos(A - q) + l2 .* cos(A + B)) .* cos(A + B) .* cos(B + q) + l1 .* (C2 .* cos(A - q) + l2 .* sin(B + q)) .* sin(A + B) .* sin(B + q)) ./ (C2 .^ 2 .* l2 .* cos(A + B) .^ 3); l1 .* (l1 .* (C2 .* cos(A - q) + l2 .* sin(B + q)) .* sin(A + B) .* cos(A - q) + l2 .* (C2 .* cos(A + B) - l1 .* sin(B + q)) .* sin(A - q) .* cos(A + B)) ./ (C2 .* l2 .^ 2 .* cos(A + B) .^ 3)]
+
+
+# name: Pf1
+# type: function handle
+@<anonymous>
+@(B, C3) [C3 .* cos(B); C3 .* sin(B)]
+
+
+# name: Kpf1
+# type: function handle
+@<anonymous>
+@(B, Kb, C3) [-C3 .* Kb .* sin(B); C3 .* Kb .* cos(B)]
+
+
+# name: Lpf1
+# type: function handle
+@<anonymous>
+@(B, Kb, Lb, C3) [-C3 .* (Kb .^ 2 .* cos(B) + Lb .* sin(B)); C3 .* (-Kb .^ 2 .* sin(B) + Lb .* cos(B))]
+
+
+# name: iJf
+# type: function handle
+@<anonymous>
+@(A, B) iJf1 (A, B, 45, 1.5)
+# length: 1
+# name: iJf1
+# type: function handle
+@<anonymous>
+@(A, B, C2, l2) [cos(B) ./ (C2 .* cos(A + B)), -sin(B) ./ (C2 .* cos(A + B)); sin(A) ./ (l2 .* cos(A + B)), -cos(A) ./ (l2 .* cos(A + B))]
+
+
+
+
+# name: Ff
+# type: function handle
+@<anonymous>
+@(A, B, q) Ff1 (A, B, q, 45, L1r, L2r, 12.5, 1.5)
+# length: 3
+# name: Ff1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, L1, L2, l1, l2) [C2 .* sin(A) - L1 + l1 .* cos(q) + l2 .* cos(B); -C2 .* cos(A) - L2 + l1 .* sin(q) - l2 .* sin(B)]
+
+
+# name: L1r
+# type: scalar
+13.919648195957343
+
+
+# name: L2r
+# type: scalar
+43.584959827901166
+
+
+
+
+# name: Kf
+# type: function handle
+@<anonymous>
+@(A, B, q) Kf1 (A, B, q, 45, 12.5, 1.5)
+# length: 1
+# name: Kf1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, l1, l2) [l1 .* sin(B + q) ./ (C2 .* cos(A + B)); l1 .* cos(A - q) ./ (l2 .* cos(A + B))]
+
+
+
+
+# name: Lf
+# type: function handle
+@<anonymous>
+@(A, B, q) Lf1 (A, B, q, 45, 12.5, 1.5)
+# length: 1
+# name: Lf1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, l1, l2) [l1 .* (C2 .* (l1 .* cos(A - q) + l2 .* cos(A + B)) .* cos(A + B) .* cos(B + q) + l1 .* (C2 .* cos(A - q) + l2 .* sin(B + q)) .* sin(A + B) .* sin(B + q)) ./ (C2 .^ 2 .* l2 .* cos(A + B) .^ 3); l1 .* (l1 .* (C2 .* cos(A - q) + l2 .* sin(B + q)) .* sin(A + B) .* cos(A - q) + l2 .* (C2 .* cos(A + B) - l1 .* sin(B + q)) .* sin(A - q) .* cos(A + B)) ./ (C2 .* l2 .^ 2 .* cos(A + B) .^ 3)]
+
+
+
+
+# name: Pf
+# type: function handle
+@<anonymous>
+@(B) Pf1 (B, 35)
+# length: 1
+# name: Pf1
+# type: function handle
+@<anonymous>
+@(B, C3) [C3 .* cos(B); C3 .* sin(B)]
+
+
+
+
+# name: Kpf
+# type: function handle
+@<anonymous>
+@(A, B, q) Kpf1 (B, Kf (A, B, q) (2), 35)
+# length: 2
+# name: Kf
+# type: function handle
+@<anonymous>
+@(A, B, q) Kf1 (A, B, q, 45, 12.5, 1.5)
+# length: 1
+# name: Kf1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, l1, l2) [l1 .* sin(B + q) ./ (C2 .* cos(A + B)); l1 .* cos(A - q) ./ (l2 .* cos(A + B))]
+
+
+
+
+# name: Kpf1
+# type: function handle
+@<anonymous>
+@(B, Kb, C3) [-C3 .* Kb .* sin(B); C3 .* Kb .* cos(B)]
+
+
+
+
+# name: Lpf
+# type: function handle
+@<anonymous>
+@(A, B, q) Lpf1 (B, Kf (A, B, q) (2), Lf (A, B, q) (2), 35)
+# length: 3
+# name: Kf
+# type: function handle
+@<anonymous>
+@(A, B, q) Kf1 (A, B, q, 45, 12.5, 1.5)
+# length: 1
+# name: Kf1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, l1, l2) [l1 .* sin(B + q) ./ (C2 .* cos(A + B)); l1 .* cos(A - q) ./ (l2 .* cos(A + B))]
+
+
+
+
+# name: Lf
+# type: function handle
+@<anonymous>
+@(A, B, q) Lf1 (A, B, q, 45, 12.5, 1.5)
+# length: 1
+# name: Lf1
+# type: function handle
+@<anonymous>
+@(A, B, q, C2, l1, l2) [l1 .* (C2 .* (l1 .* cos(A - q) + l2 .* cos(A + B)) .* cos(A + B) .* cos(B + q) + l1 .* (C2 .* cos(A - q) + l2 .* sin(B + q)) .* sin(A + B) .* sin(B + q)) ./ (C2 .^ 2 .* l2 .* cos(A + B) .^ 3); l1 .* (l1 .* (C2 .* cos(A - q) + l2 .* sin(B + q)) .* sin(A + B) .* cos(A - q) + l2 .* (C2 .* cos(A + B) - l1 .* sin(B + q)) .* sin(A - q) .* cos(A + B)) ./ (C2 .* l2 .^ 2 .* cos(A + B) .^ 3)]
+
+
+
+
+# name: Lpf1
+# type: function handle
+@<anonymous>
+@(B, Kb, Lb, C3) [-C3 .* (Kb .^ 2 .* cos(B) + Lb .* sin(B)); C3 .* (-Kb .^ 2 .* sin(B) + Lb .* cos(B))]
+
+
+
+
