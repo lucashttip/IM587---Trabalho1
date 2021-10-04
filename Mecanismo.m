@@ -13,9 +13,9 @@ L2r = 45 - 12.5*sind(6.5);
 
 ### ====== Resolvendo o problema com simbolico ======
 pkg load symbolic
-syms l1 l2 L1 L2 C2 C3 A B q Aq(q) Bq(q) Kb Kbq(q) Lb Lbq(q) qp qpp
+syms l1 l2 L1 L2 C2 C3 A B q Aq(q) Bq(q) Kb Kbq(q) Lb Lbq(q) qp qpp;
 
-## Equações de loop
+### Equações de loop
 f1 = l1*cos(q) + C2*sin(A) + l2*cos(B) - L1;
 f2 = l1*sin(q) - C2*cos(A) - l2*sin(B) - L2;
 
@@ -41,7 +41,7 @@ JL = jacobian(Kq,q);
 L = subs(subs(JL,{diff(Aq,q),diff(Bq,q)},{K(1),K(2)}),{Aq,Bq},{A,B});
 L = simplify(L);
 
-## Equações do ponto de interesse:
+### Equações do ponto de interesse:
 xp = C3*cos(Bq);
 yp = C3*sin(Bq);
 P = [subs(xp,Bq,B); subs(yp,Bq,B)];
@@ -63,7 +63,7 @@ Lxp = simplify(subs(Lxpq,{Aq,Bq,Kbq,Lbq},{A,B,Kb,Lb}));
 Lyp = simplify(subs(Lypq,{Aq,Bq,Kbq,Lbq},{A,B,Kb,Lb}));
 Lp = [Lxp; Lyp];
 
-## Transformando as expressões simbolicas em funções
+### Transformando as expressões simbolicas em funções
 # Expressões para calculo da posição:
 iJf1 = function_handle(iJ,'vars', [A B C2 l2]);
 Ff1 = function_handle(F,'vars', [A B q C2 L1 L2 l1 l2]);
@@ -89,50 +89,3 @@ Kpf = @(A, B, q) Kpf1(B, Kf(A,B,q)(2), 35);
 Lpf = @(A, B, q) Lpf1(B, Kf(A,B,q)(2), Lf(A,B,q)(2), 35);
 
 save functions.mat iJf1 Ff1 Kf1 Lf1 Pf1 Kpf1 Lpf1 iJf Ff Kf Lf Pf Kpf Lpf
-
-#{
-## Resolvendo o problema com Newton-Raphson
-N = 100;
-
-ti = 0;
-tf = 5; 
-
-t = linspace(ti,tf,N);
-q0 = linspace(-6.5,0.4,N);
-q0rad = deg2rad(q0);
-
-A0rad = zeros(N,1);
-B0rad = zeros(N,1);
-
-x0 = [pi,0];
-
-for i = 1:N
-  [A0rad(i), B0rad(i)] = newtonR2(Ff,iJf,q0rad(i),x0(1),x0(2),1e-5,15);
-  x0 = [A0rad(i), B0rad(i)];
- endfor
-
-A0 = rad2deg(A0rad);
-B0 = rad2deg(B0rad);
-
-##f = figure;
-##sp1 = subplot(3,1,1);
-##plot(sp1,q0);
-##ylabel(sp1,"q");
-##
-##sp2 = subplot(3,1,2);
-##plot(sp2,A0);
-##ylabel(sp2,"A");
-##
-##sp3 = subplot(3,1,3);
-##plot(sp3,B0);
-##ylabel(sp3,"B");
-
-##plotabonito3(t,q0,A0,B0,"q (graus)","A (graus)","B (graus)","tempo (s)");
-##print -dpng -color plot1.png
-
-y = {q0, A0, B0};
-yl = {"q (graus)","A (graus)","B (graus)"};
-xl = "tempo (s)";
-
-plotabonito(t,y,yl,xl,3,1)
-#}
